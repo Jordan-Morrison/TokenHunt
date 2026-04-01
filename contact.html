@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+</head>
+<body>
+    <a href="/">
+        <h1>Home</h1>
+    </a>
+    <a href="/about">
+        <h1>About</h1>
+    </a>
+    <a href="/contact">
+        <h1>Contact</h1>
+    </a>
+    <a href="/tokenHunt">
+        <h1>Token Hunt</h1>
+    </a>
+
+    <h2>Contact Page</h2>
+
+    <img id="CHAtoken3" src="token.png" onclick="tokenClicked('CHAtoken3')"/>
+
+    <script>
+
+        if (localStorage && localStorage.tokenHunt){
+            let found = JSON.parse(localStorage.tokenHunt);
+            if (found.includes("CHAtoken3")){
+                document.getElementById("CHAtoken3").style = "display:none";
+            }
+        }
+
+        function tokenClicked(token) {
+            console.log("clicked:", token)
+            if (localStorage){
+                if (localStorage.tokenHunt){
+                    let found = JSON.parse(localStorage.tokenHunt);
+                    found.push(token);
+                    localStorage.tokenHunt = JSON.stringify(found);
+                }
+                else {
+                    localStorage.tokenHunt = JSON.stringify([token]);
+                }
+            }
+            document.getElementById(token).style = "display:none";
+        }
+    </script>
+</body>
+</html>
